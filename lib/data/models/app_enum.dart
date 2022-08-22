@@ -1,0 +1,1 @@
+enum FBsender { You, Friend }
