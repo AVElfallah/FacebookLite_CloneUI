@@ -1,6 +1,5 @@
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 import 'package:fblite_clone/data/constant/app_theme.dart';
-import 'package:fblite_clone/presentation/colors/colors_values.dart';
 import 'package:fblite_clone/presentation/pages/appdrawer/drawerpage.dart';
 import 'package:fblite_clone/presentation/pages/friendspage/friendspage.dart';
 import 'package:fblite_clone/presentation/pages/marketplacepage.dart';
@@ -14,6 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+
+import 'data/models/colors/app_colors.dart';
 
 void main() {
   runApp(BlocProvider<AppSettingsBloc>(
@@ -45,20 +46,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = AppSettingsBloc.get(context).isDarkTheme;
     var page = AppSettingsBloc.get(context).page;
 
+    AppUsedColors.isDark = AppSettingsBloc.get(context).isDarkTheme;
+    final colors = AppUsedColors();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme().appLightTheme,
       darkTheme: AppTheme().appDarkTheme,
-      themeMode: context.watch<AppSettingsBloc>().isDarkTheme
-          ? ThemeMode.dark
-          : ThemeMode.light,
+      themeMode: context.watch<AppSettingsBloc>().appMode,
       title: 'Facebook',
       home: Scaffold(
-        backgroundColor:
-            isDark ? Colors.blueGrey.shade900 : Colors.blueGrey.shade300,
+        backgroundColor: colors.scaffoldBackgroundColor,
         endDrawer: FBDrawer(),
         body: PageView(
           controller: _pageController,
@@ -72,18 +71,27 @@ class _MyAppState extends State<MyApp> {
         ),
         bottomNavigationBar: AnimatedBottomNavigationBar(
           onTap: (val) {
-            AppSettingsBloc.get(context).add(ChangePageEvent(val));
-            _pageController.animateToPage(val,
-                duration: Duration(milliseconds: 500), curve: Curves.ease);
+            AppSettingsBloc.get(
+              context,
+            ).add(
+              ChangePageEvent(
+                val,
+              ),
+            );
+            _pageController.animateToPage(
+              val,
+              duration: Duration(
+                milliseconds: 500,
+              ),
+              curve: Curves.ease,
+            );
           },
           activeIndex: page,
-          gapLocation: GapLocation.center,
+          gapLocation: GapLocation.end,
           splashColor: Colors.black,
-          inactiveColor: ColorsValues(isDark).inactiveColor(),
-          activeColor: page != 4
-              ? ColorsValues(isDark).activeColor()
-              : ColorsValues(isDark).inactiveColor(),
-          backgroundColor: ColorsValues(isDark).backgroundColor(),
+          inactiveColor: colors.bottomNavBarInactiveColor,
+          backgroundColor: colors.widgetsBackgroundColor,
+          activeColor: colors.inactiveColorWhenIsMessenger(page),
           rightCornerRadius: 0,
           leftCornerRadius: 0,
           icons: [
@@ -93,16 +101,25 @@ class _MyAppState extends State<MyApp> {
             FontAwesomeIcons.shop,
           ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: ColorsValues(isDark).backgroundColor(),
-          foregroundColor: page == 4
-              ? ColorsValues(isDark).activeColor()
-              : ColorsValues(isDark).inactiveColor(),
+          backgroundColor: colors.widgetsBackgroundColor,
+          foregroundColor: colors.activeColorWhenIsMessenger(
+            page,
+          ),
           onPressed: () {
-            AppSettingsBloc.get(context).add(ChangePageEvent(4));
-            _pageController.animateToPage(4,
-                duration: Duration(milliseconds: 500), curve: Curves.ease);
+            AppSettingsBloc.get(context).add(
+              ChangePageEvent(
+                4,
+              ),
+            );
+            _pageController.animateToPage(
+              4,
+              duration: Duration(
+                milliseconds: 500,
+              ),
+              curve: Curves.ease,
+            );
           },
           child: Icon(
             FontAwesomeIcons.facebookMessenger,

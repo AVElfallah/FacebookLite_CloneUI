@@ -1,7 +1,9 @@
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
-import 'package:fblite_clone/presentation/colors/colors_values.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../data/models/colors/app_colors.dart';
 
 class MarketPlacePage extends StatelessWidget {
   final List products = [
@@ -14,7 +16,8 @@ class MarketPlacePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    var isDark = AppSettingsBloc.get(context).isDarkTheme;
+    AppUsedColors.isDark = AppSettingsBloc.get(context).isDarkTheme;
+    final colors = AppUsedColors();
     return CustomScrollView(slivers: <Widget>[
       SliverAppBar(
         elevation: 0,
@@ -23,7 +26,7 @@ class MarketPlacePage extends StatelessWidget {
           'Market Place',
           style: TextStyle(
             fontSize: 27,
-            color: ColorsValues(isDark).mainFontColor(),
+            color: colors.appBarFontColor,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -45,16 +48,14 @@ class MarketPlacePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Chip(
-                    backgroundColor:
-                        isDark ? Colors.grey.shade900 : Colors.grey.shade100,
+                    backgroundColor: colors.chipColor,
                     label: Icon(
                       FontAwesomeIcons.user,
                       size: 24,
                     ),
                   ),
                   Chip(
-                    backgroundColor:
-                        isDark ? Colors.grey.shade900 : Colors.grey.shade100,
+                    backgroundColor: colors.chipColor,
                     label: Text(
                       'Inbox',
                       style: TextStyle(
@@ -63,8 +64,7 @@ class MarketPlacePage extends StatelessWidget {
                     ),
                   ),
                   Chip(
-                    backgroundColor:
-                        isDark ? Colors.grey.shade900 : Colors.grey.shade100,
+                    backgroundColor: colors.chipColor,
                     label: Text(
                       'Sell',
                       style: TextStyle(
@@ -73,8 +73,7 @@ class MarketPlacePage extends StatelessWidget {
                     ),
                   ),
                   Chip(
-                    backgroundColor:
-                        isDark ? Colors.grey.shade900 : Colors.grey.shade100,
+                    backgroundColor: colors.chipColor,
                     label: Text(
                       'Categories',
                       style: TextStyle(
@@ -83,8 +82,7 @@ class MarketPlacePage extends StatelessWidget {
                     ),
                   ),
                   Chip(
-                    backgroundColor:
-                        isDark ? Colors.grey.shade900 : Colors.grey.shade100,
+                    backgroundColor: colors.chipColor,
                     label: Text(
                       'Search',
                       style: TextStyle(
@@ -119,7 +117,7 @@ class MarketPlacePage extends StatelessWidget {
                       'Mansoura - 60 km',
                     ),
                     style: TextButton.styleFrom(
-                      primary: isDark ? Colors.blue.shade400 : Colors.black,
+                      primary: colors.buttonTextColor,
                       padding: EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 5,
@@ -156,17 +154,15 @@ class MarketPlacePage extends StatelessWidget {
                             right: 10,
                             top: 1,
                             child: Chip(
-                              backgroundColor: isDark
-                                  ? Colors.grey.shade900
-                                  : Colors.grey.shade100,
+                              backgroundColor: colors.chipColor,
                               avatar: Icon(
                                 FontAwesomeIcons.dollarSign,
-                                color: isDark ? Colors.white : Colors.black,
+                                color: colors.whiteToBlack,
                               ),
                               label: Text(
                                 '100',
                                 style: TextStyle(
-                                  color: isDark ? Colors.white : Colors.black,
+                                  color: colors.whiteToBlack,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -180,9 +176,7 @@ class MarketPlacePage extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          backgroundColor: isDark
-                              ? Colors.black38
-                              : Colors.grey[100]!.withOpacity(.65),
+                          backgroundColor: colors.whiteToBlackLight,
                           fontSize: 18,
                         ),
                       ),

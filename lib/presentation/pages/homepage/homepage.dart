@@ -1,6 +1,6 @@
 import 'package:fblite_clone/UI_test/testingpostdata.dart';
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
-import 'package:fblite_clone/presentation/colors/colors_values.dart';
+
 import 'package:fblite_clone/presentation/pages/homepage/components/postcreation.dart';
 import 'package:fblite_clone/presentation/pages/homepage/components/postsomponents/postbuilder.dart';
 import 'package:fblite_clone/presentation/pages/homepage/components/storycomponents/storyscroll.dart';
@@ -8,9 +8,13 @@ import 'package:fblite_clone/presentation/pages/homepage/components/storycompone
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../data/models/colors/app_colors.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AppUsedColors.isDark = AppSettingsBloc.get(context).isDarkTheme;
+    final colors = AppUsedColors();
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
@@ -33,8 +37,7 @@ class HomePage extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 29,
-              color: ColorsValues(AppSettingsBloc.get(context).isDarkTheme)
-                  .mainFontColor(),
+              color: colors.appBarFontColor,
             ),
           ),
         ),

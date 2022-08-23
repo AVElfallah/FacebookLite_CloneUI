@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/cupertino.dart';
 
 part 'app_settings_event.dart';
 part 'app_settings_state.dart';
@@ -14,6 +14,7 @@ class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
       BlocProvider.of<AppSettingsBloc>(context);
 
   bool isDarkTheme = true;
+  ThemeMode get appMode => isDarkTheme ? ThemeMode.dark : ThemeMode.light;
   int page = 0;
 
   AppSettingsState _changeTheme() {

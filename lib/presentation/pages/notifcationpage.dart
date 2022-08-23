@@ -1,7 +1,10 @@
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
-import 'package:fblite_clone/presentation/colors/colors_values.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../data/models/colors/app_colors.dart';
 
 class NotificationPage extends StatelessWidget {
   final List notifications = [
@@ -14,7 +17,8 @@ class NotificationPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    final isDark = AppSettingsBloc.get(context).isDarkTheme;
+    AppUsedColors.isDark = context.watch<AppSettingsBloc>().isDarkTheme;
+    final colors = AppUsedColors();
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -23,9 +27,7 @@ class NotificationPage extends StatelessWidget {
             'Notifications',
             style: TextStyle(
               fontSize: 27,
-              color: ColorsValues(
-                isDark,
-              ).mainFontColor(),
+              color: colors.appBarFontColor,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -44,18 +46,16 @@ class NotificationPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: ColorsValues(isDark).appMostUsedColor(),
+                  primary: colors.scaffoldBackgroundColor,
                   side: BorderSide(
-                    color: isDark
-                        ? Colors.blueGrey.shade800
-                        : Colors.blueGrey.shade400,
+                    color: colors.elButtonBorder,
                     width: 4,
                   ),
                 ),
                 child: Text(
                   'Mark all as read',
                   style: TextStyle(
-                    color: isDark ? Colors.blue.shade400 : Colors.blue.shade900,
+                    color: colors.elButtonTextColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
