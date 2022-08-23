@@ -1,13 +1,13 @@
 import 'package:fblite_clone/data/models/post_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../../business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 
 class FBPostConcept extends StatelessWidget {
-  FBPostConcept({required this.fbPost});
+  const FBPostConcept({Key? key, required this.fbPost}) : super(key: key);
   final FBPost fbPost;
 
   @override
@@ -66,7 +66,7 @@ class FBPostConcept extends StatelessWidget {
                               fbPost.accountName != null
                                   ? fbPost.accountName!
                                   : 'Noname',
-                              style: TextStyle(fontSize: 19),
+                              style: const TextStyle(fontSize: 19),
                               maxLines: 3,
                               softWrap: false,
                               overflow: TextOverflow.ellipsis,
@@ -78,7 +78,7 @@ class FBPostConcept extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  fbPost.publishTime!.largerTimeWithString,
+                                  fbPost.publishTime!.toLargeString(context)!,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: context
@@ -107,12 +107,12 @@ class FBPostConcept extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Icon(FontAwesomeIcons.ellipsis)
+                  const Icon(FontAwesomeIcons.ellipsis)
                 ],
               ),
               Padding(
                   padding: const EdgeInsets.fromLTRB(2, 30, 2, 10),
-                  child: Container(
+                  child: SizedBox(
                       width: double.infinity,
                       child: RichText(
                         softWrap: false,
@@ -123,9 +123,7 @@ class FBPostConcept extends StatelessWidget {
                                 ? Colors.white
                                 : Colors.black,
                           ),
-                          text: fbPost.postRichText != null
-                              ? fbPost.postRichText
-                              : '',
+                          text: fbPost.postRichText ?? '',
                         ),
                         textAlign: TextAlign.justify,
                       ))),
@@ -134,83 +132,79 @@ class FBPostConcept extends StatelessWidget {
                       padding: const EdgeInsets.all(2),
                       child: Image(fit: BoxFit.cover, image: fbPost.postPhoto!),
                     )
-                  : Text(''),
+                  : const Text(''),
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: Container(
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor:
-                            context.watch<AppSettingsBloc>().isDarkTheme
-                                ? Colors.black54
-                                : Colors.black38,
-                        radius: 10,
-                        child: Icon(
-                          FontAwesomeIcons.solidHeart,
-                          size: 11,
-                          color: Colors.red,
-                        ),
-                      ),
-                      CircleAvatar(
-                        backgroundColor:
-                            context.watch<AppSettingsBloc>().isDarkTheme
-                                ? Colors.black54
-                                : Colors.black38,
-                        radius: 10,
-                        child: Icon(
-                          FontAwesomeIcons.thumbsUp,
-                          size: 11,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      Text(fbPost.likesNum.toString())
-                    ],
-                  ),
-                ),
-              ),
-              Container(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize:
-                            Size(MediaQuery.of(context).size.width * .29, 20),
-                      ),
-                      onPressed: () {},
-                      icon: Icon(FontAwesomeIcons.thumbsUp),
-                      label: Text(
-                        fbPost.likesNum.toString(),
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize:
-                            Size(MediaQuery.of(context).size.width * .29, 20),
-                      ),
-                      onPressed: () {},
-                      icon: Icon(FontAwesomeIcons.comment),
-                      label: Text(
-                        fbPost.commentsNum.toString(),
-                        style: TextStyle(fontSize: 16),
+                    CircleAvatar(
+                      backgroundColor:
+                          context.watch<AppSettingsBloc>().isDarkTheme
+                              ? Colors.black54
+                              : Colors.black38,
+                      radius: 10,
+                      child: const Icon(
+                        FontAwesomeIcons.solidHeart,
+                        size: 11,
+                        color: Colors.red,
                       ),
                     ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize:
-                            Size(MediaQuery.of(context).size.width * .29, 20),
+                    CircleAvatar(
+                      backgroundColor:
+                          context.watch<AppSettingsBloc>().isDarkTheme
+                              ? Colors.black54
+                              : Colors.black38,
+                      radius: 10,
+                      child: const Icon(
+                        FontAwesomeIcons.thumbsUp,
+                        size: 11,
+                        color: Colors.blue,
                       ),
-                      onPressed: () {},
-                      icon: Icon(FontAwesomeIcons.share),
-                      label: Text(
-                        fbPost.shareNum.toString(),
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )
+                    ),
+                    Text(fbPost.likesNum.toString())
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize:
+                          Size(MediaQuery.of(context).size.width * .29, 20),
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(FontAwesomeIcons.thumbsUp),
+                    label: Text(
+                      fbPost.likesNum.toString(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize:
+                          Size(MediaQuery.of(context).size.width * .29, 20),
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(FontAwesomeIcons.comment),
+                    label: Text(
+                      fbPost.commentsNum.toString(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize:
+                          Size(MediaQuery.of(context).size.width * .29, 20),
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(FontAwesomeIcons.share),
+                    label: Text(
+                      fbPost.shareNum.toString(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  )
+                ],
               ),
             ],
           ),

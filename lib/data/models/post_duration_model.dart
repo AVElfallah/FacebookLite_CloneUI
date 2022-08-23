@@ -1,83 +1,76 @@
-class FBShortDuration {
-  FBShortDuration({
-    this.year = 0,
-    this.month = 0,
-    this.day = 0,
-    this.minute = 0,
-  }) {
-    // convert time if larger than limit
-    //day if more 7 to week
-    //minute if more 60 to hour
-    //month if larger than 12 to year
-    if (day! >= 7)
-      week = int.parse((day! / 7).toString().split('.').toList().first);
+import 'package:fblite_clone/data/localizations/app_localization.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-    if (minute! >= 60)
-      hour = int.parse((minute! / 60).toString().split('.').toList().first);
+abstract class FBDuration {
+  FBDuration(
+      {this.month = 0,
+      this.hour = 0,
+      this.week = 0,
+      this.day = 0,
+      this.minute = 0,
+      this.year = 0});
+  final int year, month, week, day, hour, minute;
 
-    if (month! > 12) {
-      year =
-          year! + int.parse((month! / 12).toString().split('.').toList().first);
-    }
-  }
-  int? year = 0, month = 0, day = 0, minute = 0, week = 0, hour = 0;
-
-  String get largerTimeWithString {
-    String backString = '';
-    if (year! > 0) {
-      backString = year.toString() + ' y'; //year
-
-    } else if (month! > 0) {
-      backString = month.toString() + ' m'; //month
-
-    } else if (week! > 0) {
-      backString = week.toString() + ' w'; //week
-
-    } else if (day! < 7 && day! > 0) {
-      backString = (day).toString() + ' d'; //day
-    } else if (hour! > 0 && hour! < 24) {
-      backString = (hour!).toString() + ' h'; //hour
-    } else if (minute! < 60 && minute! > 0) {
-      backString = (minute).toString() + ' min'; //minute
-
-    } else {
-      backString = 'just now';
-    }
-    return backString;
-  }
+  String? toLargeString(BuildContext context);
+  String? toShortString(BuildContext context);
 }
 
-class FBLongDuration extends FBShortDuration {
-  FBLongDuration({
-    int? day,
-    int? month,
-    int? year,
-    int? minute,
-  }) : super(day: day, month: month, year: year, minute: minute);
-  @override
-  String get largerTimeWithString {
-    String backString = '';
-    if (year! > 0) {
-      backString = '$year ${(year! > 1) ? ' years ago' : ' year ago'}'; //year
+class FBAppDuration extends FBDuration {
+  FBAppDuration({
+    super.day = 0,
+    super.hour = 0,
+    super.minute = 0,
+    super.month = 0,
+    super.week = 0,
+    super.year = 0,
+  });
 
-    } else if (month! > 0) {
-      //month
-      backString = '$month ${(month! > 1) ? ' months ago' : ' month ago'}';
-    } else if (week! > 0) {
-      //week
-      backString = '$week ${(week! > 1) ? ' weeks ago' : ' week ago'}';
-    } else if (day! < 7 && day! > 0) {
-      //day
-      backString = '$day ${(day! > 1) ? ' dayes ago' : ' day ago'}';
-    } else if (hour! > 0 && hour! < 24) {
-      //hour
-      backString = '$hour ${(hour! > 1) ? ' hours ago' : ' hour ago'}';
-    } else if (minute! < 60 && minute! > 0) {
-      //minute
-      backString = '$minute ${(minute! > 1) ? ' minutes ago' : ' minute ago'}';
-    } else {
-      backString = 'just now';
+  @override
+  String? toLargeString(BuildContext? context) {
+    if (year > 0) {
+      return year == 1
+          ? getLang(context!, 'year_ago')
+          : "$year ${getLang(context!, 'years_ago')}";
+    } else if (month > 0) {
+      return month == 1
+          ? getLang(context!, 'month_ago')
+          : "$month ${getLang(context!, 'months_ago')}";
+    } else if (week > 0) {
+      return week == 1
+          ? getLang(context!, 'week_ago')
+          : "$week ${getLang(context!, 'weeks_ago')}";
+    } else if (day > 0) {
+      return day == 1
+          ? getLang(context!, 'day_ago')
+          : "$day ${getLang(context!, 'days_ago')}";
+    } else if (hour > 0) {
+      return hour == 1
+          ? getLang(context!, 'hour_ago')
+          : "$hour ${getLang(context!, 'hours_ago')}";
+    } else if (minute > 0) {
+      return minute == 1
+          ? getLang(context!, 'minute_ago')
+          : "$minute ${getLang(context!, 'minutes_ago')}";
     }
-    return backString;
+    return getLang(context!, 'just_now');
+  }
+
+  @override
+  String? toShortString(BuildContext? context) {
+    if (year > 0) {
+      return "$year${getLang(context!, 'y')}";
+    } else if (month > 0) {
+      return "$month${getLang(context!, 'm')}";
+    } else if (week > 0) {
+      return "$week${getLang(context!, 'w')}";
+    } else if (day > 0) {
+      return "$day${getLang(context!, 'd')}";
+    } else if (hour > 0) {
+      return "$hour${getLang(context!, 'h')}";
+    } else if (minute > 0) {
+      return "$minute${getLang(context!, 'min')}";
+    }
+    return "0${getLang(context!, 'min')}";
   }
 }

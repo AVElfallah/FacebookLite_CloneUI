@@ -9,3 +9,9 @@ class ChangePageEvent extends AppSettingsEvent {
   final int page;
   ChangePageEvent(this.page);
 }
+
+class ChangeAppLanguageEvent extends AppSettingsEvent {
+  final Locale locale;
+
+  ChangeAppLanguageEvent(this.locale);
+}

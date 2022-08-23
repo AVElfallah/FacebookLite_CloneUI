@@ -3,14 +3,16 @@ import 'package:fblite_clone/presentation/pages/appdrawer/components/profilecard
 import 'package:flutter/material.dart';
 
 class FBDrawer extends StatelessWidget {
+  const FBDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        decoration: BoxDecoration(),
+        decoration: const BoxDecoration(),
         child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: const [
               FBProfileCardView(),
               FBMenuElments(),
             ],

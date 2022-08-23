@@ -2,7 +2,7 @@ import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_
 import 'package:flutter/material.dart';
 
 class FBMessengerCircularFriendWidget extends StatelessWidget {
-  FBMessengerCircularFriendWidget({
+  const FBMessengerCircularFriendWidget({
     Key? key,
     this.friendImgURI,
     this.isOnline,
@@ -56,7 +56,7 @@ class FBMessengerCircularFriendWidget extends StatelessWidget {
                     height: 15,
                     width: 15,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 91, 245, 142),
+                      color: const Color.fromARGB(255, 91, 245, 142),
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: AppSettingsBloc.get(context).isDarkTheme
@@ -67,7 +67,7 @@ class FBMessengerCircularFriendWidget extends StatelessWidget {
                     ),
                   ),
                 )
-              : SizedBox()
+              : const SizedBox()
         ],
       ),
     );

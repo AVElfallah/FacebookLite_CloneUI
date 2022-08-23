@@ -1,5 +1,6 @@
 import 'package:fblite_clone/UI_test/testingpostdata.dart';
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
+import 'package:fblite_clone/data/localizations/app_localization.dart';
 
 import 'package:fblite_clone/presentation/pages/homepage/components/postcreation.dart';
 import 'package:fblite_clone/presentation/pages/homepage/components/postsomponents/postbuilder.dart';
@@ -11,6 +12,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../data/models/colors/app_colors.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     AppUsedColors.isDark = AppSettingsBloc.get(context).isDarkTheme;
@@ -21,7 +24,7 @@ class HomePage extends StatelessWidget {
           //  expandedHeight: 200,
           pinned: true,
           actions: [
-            Icon(
+            const Icon(
               FontAwesomeIcons.magnifyingGlass,
             ),
             IconButton(
@@ -33,7 +36,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
           title: Text(
-            'Facebook',
+            getLang(context, 'app_name'),
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 29,
@@ -43,9 +46,9 @@ class HomePage extends StatelessWidget {
         ),
         SliverList(
             delegate: SliverChildListDelegate.fixed([
-          PostCreationCard(),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
+          const PostCreationCard(),
+          const Padding(
+            padding: EdgeInsets.only(top: 10),
             child: StoryScrollShow(),
           ),
           Column(

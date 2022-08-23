@@ -1,5 +1,6 @@
+import 'package:fblite_clone/data/localizations/app_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 import '../../data/models/post_duration_model.dart';
@@ -9,16 +10,18 @@ class FBFriendRequestWidget extends StatelessWidget {
   final ImageProvider? accountPhoto;
   final List<ImageProvider>? friendsPhotos;
   final int? multualFrindsNumber;
-  final FBShortDuration? requestSentDuration;
+  final FBAppDuration? requestSentDuration;
 
-  FBFriendRequestWidget({
+  const FBFriendRequestWidget({
+    Key? key,
     this.accountName,
     this.accountPhoto,
     this.friendsPhotos,
     this.multualFrindsNumber,
     this.requestSentDuration,
-  });
+  }) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     var mQSize = MediaQuery.of(context).size;
     isLandScape() => (mQSize.width > mQSize.height) ? true : false;
@@ -38,7 +41,7 @@ class FBFriendRequestWidget extends StatelessWidget {
           child: Padding(
             padding: isLandScape()
                 ? const EdgeInsets.only(right: 35, left: 30)
-                : EdgeInsets.all(0),
+                : const EdgeInsets.all(0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -53,17 +56,17 @@ class FBFriendRequestWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               accountName!,
-                              style: TextStyle(fontSize: 21),
+                              style: const TextStyle(fontSize: 21),
                             ),
                             Text(
-                              requestSentDuration!.largerTimeWithString,
-                              style: TextStyle(fontSize: 14),
+                              requestSentDuration!.toShortString(context)!,
+                              style: const TextStyle(fontSize: 14),
                             )
                           ],
                         ),
@@ -119,16 +122,17 @@ class FBFriendRequestWidget extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                '$multualFrindsNumber mutual friends',
+                                '$multualFrindsNumber ${getLang(context, 'mutual_friends')}',
                                 softWrap: false,
                                 overflow: TextOverflow.fade,
-                                style: TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             )
                           ],
                         ),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -147,8 +151,8 @@ class FBFriendRequestWidget extends StatelessWidget {
                               ),
                               onPressed: () {},
                               child: Text(
-                                'Confirm',
-                                style: TextStyle(fontSize: 21),
+                                getLang(context, 'confirm'),
+                                style: const TextStyle(fontSize: 21),
                               )),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -166,11 +170,10 @@ class FBFriendRequestWidget extends StatelessWidget {
                               ),
                               onPressed: () {},
                               child: Text(
-                                'Delete',
-                                style: TextStyle(fontSize: 21),
+                                getLang(context, 'delete'),
+                                style: const TextStyle(fontSize: 21),
                               ))
                         ],
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       ),
                     ],
                   ),

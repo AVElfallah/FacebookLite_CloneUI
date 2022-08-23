@@ -1,12 +1,15 @@
 import 'package:fblite_clone/UI_test/testingstorydata.dart';
+import 'package:fblite_clone/data/localizations/app_localization.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 
 class StoryScrollShow extends StatelessWidget {
+  const StoryScrollShow({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var isDarkColors = [
@@ -36,7 +39,7 @@ class StoryScrollShow extends StatelessWidget {
         ),
       ),
       child: Container(
-        margin: EdgeInsets.all(3),
+        margin: const EdgeInsets.all(3),
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
@@ -56,12 +59,12 @@ class StoryScrollShow extends StatelessWidget {
               ),
               onPressed: () {},
               label: Text(
-                'View All Stories',
-                style: TextStyle(
-                  fontSize: 16,
+                getLang(context, 'view_all_stories'),
+                style: const TextStyle(
+                  fontSize: 17,
                 ),
               ),
-              icon: Icon(
+              icon: const Icon(
                 FontAwesomeIcons.bookOpen,
                 size: 16,
               ),

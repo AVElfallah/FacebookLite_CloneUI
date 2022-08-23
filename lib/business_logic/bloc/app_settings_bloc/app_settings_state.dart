@@ -12,3 +12,5 @@ class AppSettingsChangeSuccessState extends AppSettingsState {}
 class AppSettingsChangeErrorState extends AppSettingsState {}
 
 class AppSettingsChangePageState extends AppSettingsState {}
+
+class AppSettingsChangeLanguageState extends AppSettingsState {}

@@ -14,7 +14,7 @@ class AppTheme {
               25,
             ),
           ),
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 16,
           ),
           primary: Colors.black54,
@@ -22,11 +22,11 @@ class AppTheme {
         ),
       ),
 
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Colors.white,
       ),
       dividerColor: Colors.black,
-      dividerTheme: DividerThemeData(
+      dividerTheme: const DividerThemeData(
         color: Colors.black,
       ),
 
@@ -34,13 +34,13 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           primary: Colors.amber,
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 16,
           ),
         ),
       ),
       //
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
@@ -62,7 +62,7 @@ class AppTheme {
               25,
             ),
           ),
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 16,
           ),
           primary: Colors.black,
@@ -70,7 +70,7 @@ class AppTheme {
         ),
       ),
       dividerColor: Colors.amber,
-      dividerTheme: DividerThemeData(
+      dividerTheme: const DividerThemeData(
         color: Colors.amber,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -82,14 +82,14 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           primary: Colors.black,
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 16,
           ),
         ),
       ),
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white,
         ),
         backgroundColor: Colors.blueGrey.shade800,

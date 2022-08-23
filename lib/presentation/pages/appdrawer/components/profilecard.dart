@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FBProfileCardView extends StatelessWidget {
+  const FBProfileCardView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -8,7 +10,7 @@ class FBProfileCardView extends StatelessWidget {
       children: [
         Container(
           height: MediaQuery.of(context).size.height * .25,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.black,
               image: DecorationImage(
                 image: AssetImage('assets/img/background.png'),
@@ -16,7 +18,7 @@ class FBProfileCardView extends StatelessWidget {
               )),
         ),
         Column(
-          children: [
+          children: const [
             CircleAvatar(
               radius: 37,
               backgroundImage: AssetImage('assets/img/prof.png'),

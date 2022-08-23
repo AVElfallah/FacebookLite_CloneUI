@@ -16,5 +16,5 @@ class FBPost {
   String? accountName, postRichText;
   int? likesNum, commentsNum, shareNum;
   ImageProvider? postPhoto, accountPhoto;
-  FBLongDuration? publishTime;
+  FBAppDuration? publishTime;
 }

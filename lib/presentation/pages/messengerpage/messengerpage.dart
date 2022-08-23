@@ -1,43 +1,24 @@
 import 'package:fblite_clone/UI_test/testingmessenger.dart';
+import 'package:fblite_clone/data/localizations/app_localization.dart';
 import 'package:fblite_clone/presentation/widgets/messenger_circular_friend_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../../../business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 
 class MessengerPage extends StatelessWidget {
+  const MessengerPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return /* Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          'Messages',
-          style: TextStyle(
-            fontSize: 27,
-            fontWeight: FontWeight.w500,
-            color: context.watch<AppSettingsBloc>().isDarkTheme
-                ? Colors.white
-                : Colors.blue,
-          ),
-        ),
-        actions: [
-          Icon(FontAwesomeIcons.gear),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Icon(FontAwesomeIcons.magnifyingGlass),
-          )
-        ],
-      ),
-    ); */
-        CustomScrollView(
+    return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
           pinned: true,
           elevation: 0,
           title: Text(
-            'Messages',
+            getLang(context, 'messages'),
             style: TextStyle(
               fontSize: 27,
               fontWeight: FontWeight.w500,
@@ -46,10 +27,10 @@ class MessengerPage extends StatelessWidget {
                   : Colors.blue,
             ),
           ),
-          actions: [
+          actions: const [
             Icon(FontAwesomeIcons.gear),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               child: Icon(FontAwesomeIcons.magnifyingGlass),
             ),
           ],
@@ -79,13 +60,13 @@ class MessengerPage extends StatelessWidget {
                             width: 2,
                           ),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           FontAwesomeIcons.plus,
                           color: Colors.white,
                           size: 25,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 12,
                       ),
                       Expanded(
@@ -98,7 +79,7 @@ class MessengerPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 indent: 20,
                 endIndent: 20,
               ),

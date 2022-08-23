@@ -1,4 +1,5 @@
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
+import 'package:fblite_clone/data/localizations/app_localization.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,6 +15,8 @@ class MarketPlacePage extends StatelessWidget {
     'product 5',
     'product 6',
   ];
+
+  MarketPlacePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     AppUsedColors.isDark = AppSettingsBloc.get(context).isDarkTheme;
@@ -23,7 +26,7 @@ class MarketPlacePage extends StatelessWidget {
         elevation: 0,
         pinned: true,
         title: Text(
-          'Market Place',
+          getLang(context, 'market'),
           style: TextStyle(
             fontSize: 27,
             color: colors.appBarFontColor,
@@ -33,7 +36,7 @@ class MarketPlacePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               FontAwesomeIcons.magnifyingGlass,
             ),
           )
@@ -49,7 +52,7 @@ class MarketPlacePage extends StatelessWidget {
                 children: [
                   Chip(
                     backgroundColor: colors.chipColor,
-                    label: Icon(
+                    label: const Icon(
                       FontAwesomeIcons.user,
                       size: 24,
                     ),
@@ -57,8 +60,8 @@ class MarketPlacePage extends StatelessWidget {
                   Chip(
                     backgroundColor: colors.chipColor,
                     label: Text(
-                      'Inbox',
-                      style: TextStyle(
+                      getLang(context, 'inbox'),
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ),
@@ -66,8 +69,8 @@ class MarketPlacePage extends StatelessWidget {
                   Chip(
                     backgroundColor: colors.chipColor,
                     label: Text(
-                      'Sell',
-                      style: TextStyle(
+                      getLang(context, 'sell'),
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ),
@@ -75,8 +78,8 @@ class MarketPlacePage extends StatelessWidget {
                   Chip(
                     backgroundColor: colors.chipColor,
                     label: Text(
-                      'Categories',
-                      style: TextStyle(
+                      getLang(context, 'categories'),
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ),
@@ -84,8 +87,8 @@ class MarketPlacePage extends StatelessWidget {
                   Chip(
                     backgroundColor: colors.chipColor,
                     label: Text(
-                      'Search',
-                      style: TextStyle(
+                      getLang(context, 'search'),
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ),
@@ -104,21 +107,21 @@ class MarketPlacePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Today`s picks',
-                    style: TextStyle(
+                    getLang(context, 'today_picks'),
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17,
                     ),
                   ),
                   TextButton.icon(
                     onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.locationDot),
-                    label: Text(
+                    icon: const Icon(FontAwesomeIcons.locationDot),
+                    label: const Text(
                       'Mansoura - 60 km',
                     ),
                     style: TextButton.styleFrom(
                       primary: colors.buttonTextColor,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 5,
                       ),
@@ -135,6 +138,15 @@ class MarketPlacePage extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GridTile(
+                      footer: Text(
+                        products[i],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          backgroundColor: colors.whiteToBlackLight,
+                          fontSize: 18,
+                        ),
+                      ),
                       child: Stack(
                         children: [
                           Container(
@@ -171,19 +183,10 @@ class MarketPlacePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      footer: Text(
-                        products[i],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          backgroundColor: colors.whiteToBlackLight,
-                          fontSize: 18,
-                        ),
-                      ),
                     ),
                   );
                 },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
               ),

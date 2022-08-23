@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StoryCardWidget extends StatelessWidget {
-  StoryCardWidget({this.name, this.storyNumber, this.lastStoryImage});
+  const StoryCardWidget(
+      {Key? key, this.name, this.storyNumber, this.lastStoryImage})
+      : super(key: key);
   final String? name;
   final int? storyNumber;
   final ImageProvider? lastStoryImage;
@@ -20,13 +22,14 @@ class StoryCardWidget extends StatelessWidget {
           child: Card(
             color: Colors.blue,
             elevation: 45,
-            margin: EdgeInsets.all(5),
-            child: Container(
+            margin: const EdgeInsets.all(5),
+            child: SizedBox(
               width: 25,
               child: Text(
                 storyNumber.toString(),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
           ),
@@ -37,7 +40,7 @@ class StoryCardWidget extends StatelessWidget {
 }
 
 class _StoryCardShape extends StatelessWidget {
-  _StoryCardShape({this.name, this.lastStoryImage});
+  const _StoryCardShape({this.name, this.lastStoryImage});
   final String? name;
   final ImageProvider? lastStoryImage;
   @override
@@ -53,7 +56,7 @@ class _StoryCardShape extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             color: Colors.black45,
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(12),
             ),
           ),
@@ -64,7 +67,7 @@ class _StoryCardShape extends StatelessWidget {
               children: [
                 Text(
                   name!,
-                  style: TextStyle(
+                  style: const TextStyle(
                       backgroundColor: Colors.black38,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,

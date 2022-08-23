@@ -1,4 +1,6 @@
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
+import 'package:fblite_clone/data/localizations/app_localization.dart';
+import 'package:fblite_clone/data/models/post_duration_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +17,8 @@ class NotificationPage extends StatelessWidget {
     'Notification 5',
     'Notification 6'
   ];
+
+  NotificationPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     AppUsedColors.isDark = context.watch<AppSettingsBloc>().isDarkTheme;
@@ -24,7 +28,7 @@ class NotificationPage extends StatelessWidget {
         SliverAppBar(
           pinned: true,
           title: Text(
-            'Notifications',
+            getLang(context, 'notifications'),
             style: TextStyle(
               fontSize: 27,
               color: colors.appBarFontColor,
@@ -34,7 +38,7 @@ class NotificationPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 FontAwesomeIcons.magnifyingGlass,
               ),
             )
@@ -53,14 +57,14 @@ class NotificationPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Mark all as read',
+                  getLang(context, "mark_all_as_read"),
                   style: TextStyle(
                     color: colors.elButtonTextColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Divider(
@@ -77,16 +81,18 @@ class NotificationPage extends StatelessWidget {
                     ),
                     title: Text(
                       notifications[i],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Text(
+                    subtitle: const Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                     ),
                     trailing: Text(
-                      '1 hour ago',
-                      style: TextStyle(
+                      FBAppDuration(
+                              minute: 500, year: 0, day: 1, month: i, hour: 10)
+                          .toLargeString(context)!,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),

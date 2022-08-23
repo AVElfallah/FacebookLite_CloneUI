@@ -1,5 +1,6 @@
 import 'package:fblite_clone/business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 import 'package:fblite_clone/data/constant/app_theme.dart';
+import 'package:fblite_clone/data/localizations/app_localization.dart';
 import 'package:fblite_clone/presentation/pages/appdrawer/drawerpage.dart';
 import 'package:fblite_clone/presentation/pages/friendspage/friendspage.dart';
 import 'package:fblite_clone/presentation/pages/marketplacepage.dart';
@@ -9,6 +10,7 @@ import 'package:fblite_clone/presentation/pages/notifcationpage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,10 +20,12 @@ import 'data/models/colors/app_colors.dart';
 
 void main() {
   runApp(BlocProvider<AppSettingsBloc>(
-      create: (_) => AppSettingsBloc(), child: MyApp()));
+      create: (_) => AppSettingsBloc(), child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -51,6 +55,27 @@ class _MyAppState extends State<MyApp> {
     AppUsedColors.isDark = AppSettingsBloc.get(context).isDarkTheme;
     final colors = AppUsedColors();
     return MaterialApp(
+      locale: AppSettingsBloc.get(context).appLocale,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        AppLocale.delegate
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ar'),
+      ],
+      localeResolutionCallback: ((crlocales, supportedLocales) {
+        if (crlocales != null) {
+          for (Locale locale in supportedLocales) {
+            if (locale.languageCode == crlocales.languageCode) {
+              return locale;
+            }
+          }
+        }
+        return supportedLocales.first;
+      }),
       debugShowCheckedModeBanner: false,
       theme: AppTheme().appLightTheme,
       darkTheme: AppTheme().appDarkTheme,
@@ -58,15 +83,15 @@ class _MyAppState extends State<MyApp> {
       title: 'Facebook',
       home: Scaffold(
         backgroundColor: colors.scaffoldBackgroundColor,
-        endDrawer: FBDrawer(),
+        endDrawer: const FBDrawer(),
         body: PageView(
           controller: _pageController,
           children: [
-            HomePage(),
-            FriendsPage(),
+            const HomePage(),
+            const FriendsPage(),
             NotificationPage(),
             MarketPlacePage(),
-            MessengerPage(),
+            const MessengerPage(),
           ],
         ),
         bottomNavigationBar: AnimatedBottomNavigationBar(
@@ -80,7 +105,7 @@ class _MyAppState extends State<MyApp> {
             );
             _pageController.animateToPage(
               val,
-              duration: Duration(
+              duration: const Duration(
                 milliseconds: 500,
               ),
               curve: Curves.ease,
@@ -94,7 +119,7 @@ class _MyAppState extends State<MyApp> {
           activeColor: colors.inactiveColorWhenIsMessenger(page),
           rightCornerRadius: 0,
           leftCornerRadius: 0,
-          icons: [
+          icons: const [
             FontAwesomeIcons.house,
             FontAwesomeIcons.userGroup,
             Icons.notifications,
@@ -115,13 +140,13 @@ class _MyAppState extends State<MyApp> {
             );
             _pageController.animateToPage(
               4,
-              duration: Duration(
+              duration: const Duration(
                 milliseconds: 500,
               ),
               curve: Curves.ease,
             );
           },
-          child: Icon(
+          child: const Icon(
             FontAwesomeIcons.facebookMessenger,
           ),
         ),

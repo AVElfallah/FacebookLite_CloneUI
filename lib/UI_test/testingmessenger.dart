@@ -16,7 +16,7 @@ class MessengerRandomTest {
     var back = List.generate(
       20,
       (index) => FBMessengerCircularFriendWidget(
-        friendImgURI: 'assets/img/' + images[index % images.length],
+        friendImgURI: 'assets/img/${images[index % images.length]}',
         isOnline: index % 2 == 0,
         isHaveStory: index % 3 == 0,
       ),
