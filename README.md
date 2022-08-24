@@ -61,21 +61,25 @@
 <div align='center'>
    <a href="url"><img src="screenshots\Screenshot7.png" align="center" height="500" width="300" ></a>
 </div>
+
 - *Message page Light Mode*
 
 <div align='center'>
    <a href="url"><img src="screenshots\Screenshot8.png" align="center" height="500" width="300" ></a>
 </div>
+
 - *Change Language EN-lang*
 
 <div align='center'>
    <a href="url"><img src="screenshots\Screenshot9.png" align="center" height="500" width="300" ></a>
 </div>
+
 - *Change Language AR-lang*
 
 <div align='center'>
    <a href="url"><img src="screenshots\Screenshot10.png" align="center" height="500" width="300" ></a>
 </div>
+
 - *Home Page AR-lang*
 
 <div align='center'>
@@ -86,6 +90,7 @@
 <div align='center'>
    <a href="url"><img src="screenshots\Screenshot12.png" align="center" height="500" width="300" ></a>
 </div>
+
 - *Market page Ar-lang*
 
 <div align='center'>
