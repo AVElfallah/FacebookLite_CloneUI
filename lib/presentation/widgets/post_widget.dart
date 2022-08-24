@@ -6,8 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../business_logic/bloc/app_settings_bloc/app_settings_bloc.dart';
 
-class FBPostConcept extends StatelessWidget {
-  const FBPostConcept({Key? key, required this.fbPost}) : super(key: key);
+class FBPostWidget extends StatelessWidget {
+  const FBPostWidget({Key? key, required this.fbPost}) : super(key: key);
   final FBPost fbPost;
 
   @override

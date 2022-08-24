@@ -7,5 +7,5 @@ class PostBuilder {
   PostBuilder({required this.fbPostsList});
   List<FBPost> fbPostsList;
   List<Widget> convertToListOfWidgets() =>
-      fbPostsList.map((e) => FBPostConcept(fbPost: e)).toList();
+      fbPostsList.map((e) => FBPostWidget(fbPost: e)).toList();
 }

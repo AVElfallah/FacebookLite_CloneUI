@@ -36,10 +36,15 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    _pageController.addListener(() {
-      AppSettingsBloc.get(context)
-          .add(ChangePageEvent(_pageController.page!.toInt()));
-    });
+    _pageController.addListener(
+      () {
+        AppSettingsBloc.get(context).add(
+          ChangePageEvent(
+            _pageController.page!.toInt(),
+          ),
+        );
+      },
+    );
   }
 
   @override
