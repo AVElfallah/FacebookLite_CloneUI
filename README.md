@@ -48,5 +48,5 @@ This project is primarily focused on the UI and testing Flutter's powerful capab
 
 ## Screenshots 📸
 
-<img src="screenshots/Screenshot1.png" style="width:50%;height:390px">
+<img src="screenshots/Screenshot1.png" style="width:50%;height:590px">
 
