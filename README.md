@@ -48,6 +48,6 @@ This project is primarily focused on the UI and testing Flutter's powerful capab
 
 ## Screenshots 📸
 <a href="https://codepen.io/Abdulrhman-Elfallah/live/WNVzYEr">
-    <img src="./screenshots/Screenshot1.png"  width="300" height="200" />
+    <img src="./screenshots/Screenshot1.png"  width="350" height="550" />
 </a>
 
