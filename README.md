@@ -47,7 +47,7 @@ This project is primarily focused on the UI and testing Flutter's powerful capab
   
 
 ## Screenshots 📸
-![Game Process](./screenshots/Screenshot1.png)
-
-[https://github.dev/AVElfallah/FacebookLite_CloneUI/edit/master/README.md]<img src="screenshots/Screenshot1.png" style="width:350px;height:500px;margin: 0 auto;position: absolute;right: 50%">
+<a href="https://codepen.io/Abdulrhman-Elfallah/live/WNVzYEr">
+    <img src="./screenshots/Screenshot1.png"  width="300" height="200" />
+</a>
 
