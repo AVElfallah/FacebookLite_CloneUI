@@ -47,6 +47,7 @@ This project is primarily focused on the UI and testing Flutter's powerful capab
   
 
 ## Screenshots 📸
+![Game Process](https://github.com/Faizun-Faria/Thief-Robber-Landlord-Police/blob/main/Preview/gif_english.gif)
 
-<img src="screenshots/Screenshot1.png" style="width:350px;height:500px;margin: 0 auto;position: absolute;right: 50%">
+[https://github.dev/AVElfallah/FacebookLite_CloneUI/edit/master/README.md]<img src="screenshots/Screenshot1.png" style="width:350px;height:500px;margin: 0 auto;position: absolute;right: 50%">
 
