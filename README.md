@@ -47,5 +47,10 @@ This project is primarily focused on the UI and testing Flutter's powerful capab
   
 
 ## Screenshots 📸
-<iframe width="100%" height="560px" src="https://codepen.io/Abdulrhman-Elfallah/full/WNVzYEr" frameborder="0" allowfullscreen></iframe>
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Motion blur effect using SVG filters" src="https://codepen.io/Abdulrhman-Elfallah/embed/WNVzYEr?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/Abdulrhman-Elfallah/pen/WNVzYEr">
+  Motion blur effect using SVG filters</a> by Abdulrhman Elfallah (<a href="https://codepen.io/Abdulrhman-Elfallah">@Abdulrhman-Elfallah</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
